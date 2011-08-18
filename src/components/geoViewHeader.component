@@ -1,0 +1,13 @@
+<apex:component controller="geoPrefCon" allowDml="true">
+    
+    <apex:outputPanel id="preview">
+        <b>View:</b>&nbsp;&nbsp; 
+        <apex:selectList value="{!object_selected}" size="1">
+            <apex:actionSupport event="onchange" action="{!savePref}"
+                rerender="preview"
+                oncomplete="window.location.href='{!object_selected}'" />
+            <apex:selectOptions value="{!items}" />
+        </apex:selectList>
+        
+    </apex:outputPanel>
+</apex:component>

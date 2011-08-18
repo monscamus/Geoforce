@@ -1,0 +1,120 @@
+<apex:page controller="bulkGeoCode">
+	<apex:form >
+
+		<apex:includeScript value="{!jsapi_script}" />
+		<apex:includeScript value="{!maps_script}" />
+
+		<apex:pageblock title="Resources">
+			<h3>Getting Started</h3>
+			<p>1) Click on the "Geocode my Accounts" button below and leave
+			this About Geo Force tab open until you see "Geocode process completed".
+			 Geocoding is the process of translating
+			text addresses into latitude and longitude, so that they load very
+			quickly instead of translating every address each time you open the
+			map. Note:  this step may take a long time to finish if you have a lot of
+			accounts with addresses.  
+			You can repeat this process if new accounts are added to your system.  
+			
+			If this process stops for some reason, you can reload this page 
+			and click the button again to continue.
+			<p />
+			<p>2) If you do not already have the Google Earth browser plugin
+			installed, click on Accounts Earth Map and you will see a link to
+			download and install this plugin.  The  is required to view both the Accounts
+			Earth Map and the Opportunity Earth Map on the Geo Force page.</p>
+			<p></p>
+
+		<script>
+	var geocoder;    var previousOnload = window.onload;        var runningProcess = false; 
+    window.onload = function() { 
+        if (previousOnload) {             previousOnload();        }
+        geocoder = new GClientGeocoder();
+   }
+   function redo () { 
+     window.setTimeout('geocode_one_account();' ,2000); // sets the frequency
+     return true;
+   }
+</script>
+
+			<!-- Define the JavaScript function to write the point -->
+ 	<apex:actionFunction name="newGeoLocation" 
+ 			action="{!newGeoLocation}"
+			rerender="address"    
+			oncomplete="redo();" 
+			/> 
+
+		<apex:outputPanel id="address">
+			<apex:inputhidden id="accid" value="{!accountId}" />
+			<apex:inputhidden id="status" value="{!geostatus}" />
+			<apex:inputhidden id="point" value="{!geopoint}" />
+<script>	
+	function geocode_one_account() {				//	if ( ! runningProcess ) { return ; }
+		if ( "{!hasNextAddress}" == "true"  ) {		  	// geocode it 
+			var address = '<apex:outputText value="{!nextAddr}" />';
+			geocoder.getLocations(  address,   function( stat ) {
+	    		var code = stat.Status.code;    	
+		    	document.getElementById( "{!$Component.status}" ) .value = code; 
+				document.getElementById( "{!$Component.point}" ) .value = '';
+	    		if ( code == 200 ) {	
+	    			var point =  stat.Placemark.pop(); 		    		
+				 	if ( typeof(point) != "undefined" )  {
+				 		document.getElementById( "{!$Component.point}" ) .value = point.Point.coordinates[0] + ',' +point.Point.coordinates[1]; 
+				 	}
+				}			
+				newGeoLocation(); 	// call to Apex code to store this value
+			} );
+		}
+		return true;   
+	}
+</script>
+			<apex:outputPanel rendered="{! NOT(doGeocode) }">
+				<apex:commandButton rerender="comp,hidden"
+					onclick="geocode_one_account();" rendered="{! hasNextAddress }"
+					value="Geocode my Accounts" />
+			  </apex:outputPanel>
+			  
+			  <apex:outputPanel rendered="{! doGeocode }">
+			  	<b>Geocoding Account:<br />{!account.name}<br />{!nextAddr}</b>
+			  </apex:outputPanel>
+			  
+			  <apex:outputPanel rendered="{! NOT( hasNextAddress ) }">
+			  	<b>Geocoding Complete</b>
+			  </apex:outputPanel>
+		</apex:outputPanel>
+
+			<p>&nbsp;<p />
+			<h2>FAQ</h2>
+			<p></p>
+			<span
+				style="font-weight: bold; text-decoration: underline; color: rgb(51, 51, 255);">
+			<a href="http://wiki.apexdevnet.com/index.php/Force.com_Google_Earth">link
+			to developer WIKI FAQ </a></span>
+		</apex:pageblock>
+
+
+		<apex:pageblock title="Features Overview" rendered="true">
+			<p>The Geo Earth Force app translates your addresses into
+			latitude &amp; longitude and displays them on either Google Maps or
+			Google Earth right within your browser.</p>
+			<p><b>GeoLocations</b> - This tab contains all of the unique
+			addresses in Accounts, and Opportunities.  You can also create Geo Locations 
+			and relate them to other custom objects by adding a lookup field on the custom object.
+			You can easily link to a custom picture to be displayed for each location as well <br>
+			</p>
+			<p><b>Geo Earth Map</b> - This tab draws a map that lets you
+			select an Accounts View or an Opportunity view and show that view’s
+			geo location on the screen using the Google Earth plugin.</p>
+			<br />
+			<b>Reports</b>
+- Geo code summary report shows how many accounts have
+been successfully geocoded as well as how many have NOT been
+successfully geocoded. <br />
+Geo Location Totals shows how many Geo
+Locations there are with a Location Name <br />
+			<p><b> Export Google Earth KML File</b> - The Account and
+			Opportunity tabs have a button that will generate a KML file, a
+			formatted latitude longitude file with your location details so that
+			you can make your own Google Earth pages outside of Salesforce</p>
+		</apex:pageblock>
+	</apex:form>
+</apex:page>

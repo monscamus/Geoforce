@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ApexComponent xmlns="http://soap.sforce.com/2006/04/metadata">
+    <apiVersion>15.0</apiVersion>
+    <description>Balloon templates for 5 common popup balloons, you can customize this to add more styles.</description>
+    <label>balloonTemplates</label>
+</ApexComponent>

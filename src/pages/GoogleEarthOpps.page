@@ -1,0 +1,30 @@
+<apex:page standardController="Opportunity" recordSetvar="locations"
+	tabStyle="Geo_Force__tab" extensions="LocationsExt,oppSetKml"
+	sidebar="false">
+	<apex:stylesheet value="{!$Resource.earth_css}" />
+	<apex:form >
+		<apex:outputPanel id="preview" styleClass="center" layout="block">
+			<c:geoViewHeader />			
+			&nbsp;&nbsp;
+               <apex:selectList value="{!filterId}" size="1">
+				<apex:actionSupport event="onchange" action="{!changedFilter}" />
+				<apex:selectOptions value="{!listviewoptions}" />
+			</apex:selectList>&nbsp;&nbsp;&nbsp;&nbsp;
+            
+			<apex:outputText value="{!filterId}" rendered="false" />
+
+			<apex:commandButton value=" Export KML " disabled="{!exportDisabled}"
+				id="export" oncomplete="window.open('/apex/kmlOpportunitySet');" />
+	 		
+	 		{!resultsize} opportunities found - {!mappedLocationsCount} mapped
+			&nbsp;&nbsp;&nbsp;&nbsp;
+			<apex:outputLink value="/ui/list/FilterEditPage?id={!filterId}&retURL=%2F001&cancelURL=%2F001%2Fo">
+			Edit list view</apex:outputLink>
+
+			<p></p>
+
+			<c:GoogleEarth kml="{!kmlstring}" look="{!firstRecord}"
+				location="{!location}" />
+		</apex:outputPanel>
+	</apex:form>
+</apex:page>

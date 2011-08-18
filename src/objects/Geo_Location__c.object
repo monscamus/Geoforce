@@ -1,0 +1,274 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomObject xmlns="http://soap.sforce.com/2006/04/metadata">
+    <actionOverrides>
+        <actionName>Accept</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Clone</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Delete</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Edit</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>List</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>New</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Tab</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>View</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <deploymentStatus>Deployed</deploymentStatus>
+    <description>Holds a Geo cordinate, and information to build a balloon for this point</description>
+    <enableActivities>false</enableActivities>
+    <enableFeeds>false</enableFeeds>
+    <enableHistory>false</enableHistory>
+    <enableReports>true</enableReports>
+    <fields>
+        <fullName>About_Us__c</fullName>
+        <externalId>false</externalId>
+        <inlineHelpText>May contain valid XHTML markup 
+http://www.w3.org/TR/xhtml1/</inlineHelpText>
+        <label>About Us</label>
+        <length>32000</length>
+        <type>LongTextArea</type>
+        <visibleLines>3</visibleLines>
+    </fields>
+    <fields>
+        <fullName>Balloon_Template__c</fullName>
+        <description>Various types of templates provided</description>
+        <externalId>false</externalId>
+        <inlineHelpText>Select the style of balloon that will appear when user clicks on the marker</inlineHelpText>
+        <label>Balloon Template</label>
+        <picklist>
+            <picklistValues>
+                <fullName>Tall Photo</fullName>
+                <default>true</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Text and Photo Banner</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Text and Tall Photo</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Text and Weblink</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Wide Photo</fullName>
+                <default>false</default>
+            </picklistValues>
+            <sorted>false</sorted>
+        </picklist>
+        <type>Picklist</type>
+    </fields>
+    <fields>
+        <fullName>Footer__c</fullName>
+        <externalId>false</externalId>
+        <label>Footer Info</label>
+        <length>132</length>
+        <required>false</required>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Geocode_Status__c</fullName>
+        <externalId>false</externalId>
+        <label>Geocode Status</label>
+        <length>32</length>
+        <required>false</required>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Icon_URL__c</fullName>
+        <defaultValue>&apos;http://maps.google.com/mapfiles/kml/pushpin/ylw-pushpin.png&apos;</defaultValue>
+        <externalId>false</externalId>
+        <inlineHelpText>The URL of an icon for this location, up to 64 x 64 px</inlineHelpText>
+        <label>Icon URL</label>
+        <length>128</length>
+        <required>false</required>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>LogoURL__c</fullName>
+        <externalId>false</externalId>
+        <label>Logo URL</label>
+        <length>255</length>
+        <required>false</required>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>PhotoCaption__c</fullName>
+        <externalId>false</externalId>
+        <label>Photo Caption</label>
+        <length>80</length>
+        <required>false</required>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>PhotoTitle__c</fullName>
+        <externalId>false</externalId>
+        <label>Photo Title</label>
+        <length>255</length>
+        <required>false</required>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>PhotoURL__c</fullName>
+        <externalId>false</externalId>
+        <label>Photo URL</label>
+        <length>255</length>
+        <required>false</required>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>WebLinkName__c</fullName>
+        <externalId>false</externalId>
+        <label>Web Link Name</label>
+        <length>132</length>
+        <required>false</required>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>WebLink__c</fullName>
+        <description>Link to the website for this location</description>
+        <externalId>false</externalId>
+        <label>Website</label>
+        <required>false</required>
+        <type>Url</type>
+    </fields>
+    <fields>
+        <fullName>lat__c</fullName>
+        <externalId>false</externalId>
+        <label>lat</label>
+        <precision>18</precision>
+        <required>false</required>
+        <scale>15</scale>
+        <type>Number</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>lon__c</fullName>
+        <externalId>false</externalId>
+        <label>lon</label>
+        <precision>18</precision>
+        <required>false</required>
+        <scale>15</scale>
+        <type>Number</type>
+        <unique>false</unique>
+    </fields>
+    <label>Geo Location</label>
+    <listViews>
+        <fullName>All</fullName>
+        <columns>NAME</columns>
+        <columns>Geocode_Status__c</columns>
+        <columns>Icon_URL__c</columns>
+        <columns>lat__c</columns>
+        <columns>lon__c</columns>
+        <filterScope>Everything</filterScope>
+        <label>All</label>
+    </listViews>
+    <listViews>
+        <fullName>Created_Today</fullName>
+        <columns>NAME</columns>
+        <columns>Geocode_Status__c</columns>
+        <columns>Icon_URL__c</columns>
+        <columns>lat__c</columns>
+        <columns>lon__c</columns>
+        <filterScope>Everything</filterScope>
+        <filters>
+            <field>CREATED_DATE</field>
+            <operation>equals</operation>
+            <value>TODAY</value>
+        </filters>
+        <label>Created Today</label>
+    </listViews>
+    <listViews>
+        <fullName>Unsuccessful</fullName>
+        <columns>NAME</columns>
+        <columns>Geocode_Status__c</columns>
+        <columns>WebLink__c</columns>
+        <filterScope>Everything</filterScope>
+        <filters>
+            <field>Geocode_Status__c</field>
+            <operation>notEqual</operation>
+            <value>G_GEO_MANUAL,G_GEO_SUCCESS</value>
+        </filters>
+        <label>Unsuccessful</label>
+    </listViews>
+    <nameField>
+        <label>Geo Location Name</label>
+        <type>Text</type>
+    </nameField>
+    <pluralLabel>Geo Locations</pluralLabel>
+    <searchLayouts>
+        <customTabListAdditionalFields>Geocode_Status__c</customTabListAdditionalFields>
+        <customTabListAdditionalFields>lat__c</customTabListAdditionalFields>
+        <customTabListAdditionalFields>lon__c</customTabListAdditionalFields>
+    </searchLayouts>
+    <sharingModel>ReadWrite</sharingModel>
+    <validationRules>
+        <fullName>Valid_Lat</fullName>
+        <active>true</active>
+        <description>ensure that the latitude falls on the map of the earth</description>
+        <errorConditionFormula>lat__c &lt; -85.0  || lat__c &gt; 85.0</errorConditionFormula>
+        <errorDisplayField>lat__c</errorDisplayField>
+        <errorMessage>Valid Latitudes are less than 85.0 North and greater than -85.0 South</errorMessage>
+    </validationRules>
+    <validationRules>
+        <fullName>Valid_Lon</fullName>
+        <active>true</active>
+        <description>Valid Longitudes are &gt; -180 East and &lt; 180 West</description>
+        <errorConditionFormula>lon__c &gt; 180 || lon__c &lt; -180</errorConditionFormula>
+        <errorDisplayField>lon__c</errorDisplayField>
+        <errorMessage>Valid Longitudes are greater than -180.0 and less than 180.0</errorMessage>
+    </validationRules>
+    <webLinks>
+        <fullName>Preview_Location</fullName>
+        <availability>online</availability>
+        <description>Preview this location in earth</description>
+        <displayType>button</displayType>
+        <height>600</height>
+        <linkType>page</linkType>
+        <masterLabel>Preview Location</masterLabel>
+        <openType>sidebar</openType>
+        <page>GeoPreview</page>
+        <protected>false</protected>
+    </webLinks>
+    <webLinks>
+        <fullName>Reposition_Location</fullName>
+        <availability>online</availability>
+        <description>Move this marker to a new location</description>
+        <displayType>button</displayType>
+        <height>600</height>
+        <linkType>page</linkType>
+        <masterLabel>Manually Select Location</masterLabel>
+        <openType>noSidebar</openType>
+        <page>GeoReposition</page>
+        <protected>false</protected>
+    </webLinks>
+</CustomObject>

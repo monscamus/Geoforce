@@ -1,0 +1,24 @@
+<apex:page standardController="Opportunity" 
+	recordSetvar="notused"
+	extensions="LocationsExt"  
+	sidebar="false" 
+	contenttype="application/vnd.google-earth.kml+xml#sfdc_foundation.kml" ><kml xmlns="http://www.opengis.net/kml/2.2">
+<Document><name>sfdc_foundation.kml</name><Folder>
+<name>Opportunity Earth KML</name><open>1</open>
+<Style id='theBalloonStyle'>
+<BalloonStyle><text>$[description]</text></BalloonStyle>
+</Style>
+<apex:repeat value="{!geolocations}" var="one" >
+<Placemark>
+<styleUrl>#theBalloonStyle</styleUrl>
+<Style><IconStyle>
+<scale>0.8</scale><Icon><href><apex:outputtext value="{!one.geo.Icon_URL__c}" /></href></Icon>
+</IconStyle></Style>
+<name><apex:outputtext value="{!one.geo.name}"  /></name>
+<description><c:balloonTemplates gLocation="{!one}" /></description>
+<Point>
+<coordinates>{!one.geo.lon__c},{!one.geo.lat__c},0</coordinates></Point>
+</Placemark>
+</apex:repeat>
+</Folder></Document></kml>
+</apex:page>

@@ -1,0 +1,216 @@
+<apex:component >
+<apex:attribute name="gLocation" description="This is the location class" 
+	type="Location" required="true" />
+
+<apex:outputPanel rendered="{!gLocation.geo.Balloon_Template__c == 'Tall Photo'}">
+<table width="400" border="0" cellspacing="0" cellpadding="5">
+  <tr>
+<td colspan="2" align="center">
+<h2><a href="/{!gLocation.geo.id}">
+	<font color='#00CC99'>{!gLocation.geo.name}</font></a></h2>
+</td>
+</tr>
+<tr>
+<td colspan="2" align="center">
+ <img src='{!gLocation.geo.PhotoURL__c}' width='400'
+ alt="{!gLocation.geo.PhotoTitle__c}"  /><br />
+ <small>{!gLocation.geo.PhotoCaption__c}</small>
+</td>
+ </tr>  
+ <tr>
+<td colspan="2">
+  <p><font color="#3399CC"><apex:outputText value="{!gLocation.geo.About_Us__c}" escape="false" /></font></p>
+</td>
+ </tr>
+ <tr>
+ <td align="center">
+   <a href="{!gLocation.WebLink}">{!gLocation.WebLink}</a>
+ </td>
+</tr>
+  <tr>
+ <td colspan="2" align="center">
+  <font color="#999999">{!gLocation.geo.Footer__c}</font>
+</td>
+ </tr>
+</table>
+</apex:outputPanel>
+<apex:outputPanel rendered="{!gLocation.geo.Balloon_Template__c == 'Text and Photo Banner'}">
+<table width="400" border="0" cellpadding="5" cellspacing="0" bgcolor="#e8e9cb">
+<tr>
+ <td>
+   <img src="{!gLocation.geo.PhotoURL__c}" alt="picture" width="400" align="left" />
+ </td>
+</tr>
+  <tr>
+ <td>
+   <h2><font color="#006600">{!gLocation.geo.name}</font></h2>
+ </td>
+  </tr>
+  <tr>
+ <td>
+   <blockquote>
+ <p><apex:outputText value="{!gLocation.geo.About_Us__c}" escape="false" /></p>
+ <p>
+   <a href="{!gLocation.WebLink}">Read more...</a>
+ </p>
+</blockquote>
+    </td>
+  </tr>
+  <tr>
+  <td>&nbsp;</td>
+</tr>
+<tr>
+ <td>
+   <table width="100%" border="0" cellpadding="0" cellspacing="0" bgcolor="#e8e9cb">
+ <tr>
+ <td width="99%" align="right" valign="middle">
+<table border="0" cellpadding="0" cellspacing="0">
+     
+<tr align="right" valign="top">
+ <td>
+   <a href="{!gLocation.WebLink}">{!gLocation.WebLink}</a>
+ </td>
+</tr>
+ </table>
+</td>
+</tr>
+  </table>
+  </td>
+  </tr>
+</table>
+</apex:outputPanel>	
+<apex:outputPanel rendered="{!gLocation.geo.Balloon_Template__c == 'Text and Tall Photo'}">
+<table width="500" border="0" cellpadding="0" cellspacing="0">
+  <tr>
+    <td colspan="3" align="right" bgcolor="#669966">
+    <h2><font color="#FFFFFF">{!gLocation.geo.name}</font>&nbsp;</h2>
+  </td>
+  </tr>
+  <tr>
+    <td align="left">
+    <img src="{!gLocation.geo.PhotoURL__c}" alt="picture" align="left" width="300" />
+  </td>
+  <td width="7px">&nbsp;</td>
+<td rowspan="2">
+<table width="0" border="0" cellpadding="0" cellspacing="0">
+  <tr>
+  <td width="99%">&nbsp;</td>
+  </tr>
+  <tr>
+  <td width="99%">
+    <h2><font color="#009999">{!gLocation.geo.PhotoTitle__c}</font></h2>
+    <p><apex:outputText value="{!gLocation.geo.About_Us__c}" escape="false" /></p>
+    <p><a href="{!gLocation.WebLink}">Learn more...</a></p></td>
+  </tr>
+  <tr>
+  <td align="center" width="99%">&nbsp;</td>
+  </tr>
+  <tr>
+  <td align="center" width="99%">
+  <p>
+    <a href="{!gLocation.WebLink}">{!gLocation.WebLink}</a>
+  </p>
+</td>
+  </tr>
+</table>
+  </td>
+  </tr>
+<tr>
+  <td width="1%" align="center" valign="top">
+  <font color="#999999">{!gLocation.geo.Footer__c}</font></td>
+</tr>
+</table>
+</apex:outputPanel>
+<apex:outputPanel rendered="{!gLocation.geo.Balloon_Template__c == 'Text and Weblink'}">
+<table width="450" border="0" cellspacing="0" cellpadding="5" bgcolor="#CCFFFF">
+  <tr>
+    <td colspan="3">&nbsp;</td>
+  </tr>
+<tr>
+ <td width="300"><h2><font color="#000099">{!gLocation.geo.name}</font></h2>
+     <p><apex:outputText value="{!gLocation.geo.About_Us__c}" escape="false" /></p>
+  <p>
+    <a href="{!gLocation.WebLink}">Read more...</a>
+  </p>
+</td>
+<td></td>
+<td width="125" align="left" valign="top">
+   <table width="100%" border="0" cellpadding="0" cellspacing="2" bgcolor="#FFFFFF">
+   <tr>
+     <th align="left" >Visit our Website</th>
+</tr>
+<tr>
+<td>
+  <a href="{!gLocation.WebLink}">{!gLocation.WebLink}</a>
+</td>
+  </tr>  
+</table>
+
+<p align="left">
+<img src="{!gLocation.geo.PhotoURL__c}" alt="picture" width="125" />
+<br />
+   <em>{!gLocation.geo.PhotoCaption__c}</em>
+ </p>
+  </td>
+</tr>
+  <tr>
+  <td colspan="3" align="center" valign="middle">
+    <font color="#999999">{!gLocation.geo.Footer__c}</font>
+ </td>
+</tr>  
+</table>
+</apex:outputPanel>
+<apex:outputPanel rendered="{!gLocation.geo.Balloon_Template__c == 'Wide Photo'}">
+<table width="580" cellpadding="0" cellspacing="0">
+  <tr>
+<td colspan="3" align="left" valign="top">
+  <table width="100%" cellpadding="0" cellspacing="0">
+<tr>
+  
+<td align="left" valign="middle">
+  <font color="#CC3333" size="+2"><strong>{!gLocation.geo.name}</strong></font>
+  <hr />
+</td>
+</tr>
+  </table>
+  </td>
+</tr>
+<tr>
+<td align="left" valign="top">
+  <p>
+  <font color="#666666"><strong>About Us:</strong></font>
+  <br />
+  <font color="#999999"><apex:outputText value="{!gLocation.geo.About_Us__c}" escape="false" /></font>
+</p>
+<p>
+<a href="{!gLocation.WebLink}" target="_blank"><strong><font color="#CC3333">{!gLocation.WebLink}</font></strong></a>
+  
+    </p>
+  </td>
+  <td width="10" align="left" valign="top">&nbsp;</td>
+<td align="right" valign="top">
+<table border="0" cellspacing="0" cellpadding="0" bgcolor="white">
+  <tr>
+<td align="center">
+  <img src="{!gLocation.geo.PhotoURL__c}" alt="picture" width="300px" align="left" />
+  </td>
+</tr>
+<tr>
+  <td align="left" valign="top">
+<dl>
+  <dt><font color="#666666"><strong>{!gLocation.geo.PhotoTitle__c}:</strong></font></dt>
+  <dd><font color="#999999">{!gLocation.geo.PhotoCaption__c}</font></dd>
+</dl>
+  </td>
+</tr>
+</table>
+</td>
+</tr>
+<tr>
+<td colspan="3" align="right" valign="top">
+  <font color="#999999">{!gLocation.geo.Footer__c}</font>
+</td>
+</tr>
+</table>
+</apex:outputPanel>
+</apex:component>

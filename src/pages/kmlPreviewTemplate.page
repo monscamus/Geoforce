@@ -1,0 +1,26 @@
+<apex:page standardController="Geo_Location__c" extensions="GeoPreview"
+    showheader="false" 
+    contenttype="application/vnd.google-earth.kml+xml#sfdc_foundation.kml" ><kml xmlns="http://www.opengis.net/kml/2.2">
+<Document>
+<name>force.com</name>
+<Folder>
+<name>Single Location Preview</name>
+<open>1</open> 
+<Style id='theBalloonStyle'>
+<BalloonStyle><text>$[description]</text></BalloonStyle> 
+</Style>
+<Placemark> 
+<styleUrl>#theBalloonStyle</styleUrl>
+<Style>  
+<IconStyle><scale>0.9</scale>
+<Icon><href><apex:outputtext value="{!PreviewLocation.geo.Icon_URL__c}" /></href></Icon>
+</IconStyle></Style> 
+<name><apex:outputtext value="{!PreviewLocation.geo.name}"  /></name>
+<description><c:balloonTemplates gLocation="{!PreviewLocation}" /></description>
+<Point>
+<coordinates>{!PreviewLocation.geo.lon__c},{!PreviewLocation.geo.lat__c},0</coordinates>
+</Point>
+</Placemark>
+</Folder>
+</Document></kml> 
+</apex:page>

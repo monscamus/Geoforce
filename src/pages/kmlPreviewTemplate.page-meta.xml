@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ApexPage xmlns="http://soap.sforce.com/2006/04/metadata">
+    <apiVersion>15.0</apiVersion>
+    <description>generate the KML required for google earth , used by the preview button on Geo Location object detail page</description>
+    <label>kmlPreviewTemplate</label>
+</ApexPage>

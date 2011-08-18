@@ -1,0 +1,106 @@
+<apex:page standardController="Geo_Location__c"
+	extensions="GeoReposition,geoApiKey" sidebar="false">
+	<style type="text/css">
+div#bd {
+	position: relative;
+}
+
+div#gmap {
+	width: 100%;
+	height: 400px;
+	/* If you change this don't forget to change the crosshair position to match */
+}
+
+div#crosshair {
+	position: absolute;
+	top: 192px;
+	height: 19px;
+	width: 19px;
+	left: 50%;
+	margin-left: -8px; 
+	display: block;
+	background: url({! URLFOR($Resource.crosshair)});
+	background-position :center center;
+	background-repeat :no-repeat;
+}
+div#crosshair2 {
+	position: absolute;
+	top: 168px;
+	height: 32px;
+	width: 32px;
+	left: 50%;
+	margin-left: -6px;  
+	display: block;
+	/*background-image: url({! URLFOR($Resource.pushpin)} );  */
+	background-position :center center;
+	background-repeat :no-repeat;
+}
+</style> 
+ <script src="{!jsapi_script}"></script>
+    <script src="{!maps_script}" type="text/javascript"></script> 
+ 
+<apex:PageMessages />
+		
+	<apex:form >
+			
+		<apex:pageblock title="Manually locate {!Geo_Location__c.name}" >
+			<apex:inputhidden value="{!location_str}" id="latlon" />
+			<p>Instructions: Move the map, and zoom into your new location, until the cross-hair is just where you 
+you would like.  Then press the Relocate button.
+</p>
+
+<script type="text/javascript">
+			function captureResponse(ele) { 
+				document.getElementById('{!$Component.latlon}').value = 
+					document.getElementById('latlon').innerHTML;
+			}
+</script>
+
+			<apex:pageBlockButtons > 
+  	  	  	  	<apex:commandButton value="Yes, locate {!Geo_Location__c.name}"
+					action="{!relocate}" onclick="javascript:captureResponse(this);" />
+				<apex:commandButton value="Cancel" action="{!goback}" />
+			</apex:pageBlockButtons>
+  	  	  	
+    
+<script>
+google.setOnLoadCallback(showMap);
+ 
+function showMap() {
+    window.gmap = new google.maps.Map2(document.getElementById('gmap'));
+    gmap.addControl(new google.maps.LargeMapControl());
+    gmap.addControl(new google.maps.MapTypeControl());
+    gmap.enableContinuousZoom();
+    gmap.enableScrollWheelZoom();
+    
+    var timer = null;
+    
+    google.maps.Event.addListener(gmap, "move", function() {
+        var center = gmap.getCenter();
+        document.getElementById("latlon").innerHTML = center.toString();
+        
+     });
+ 
+ 	
+  	// Default view of the world
+  	var alt = 8; 
+  	if ( {!loc.geo.lat__c} == 0.0 && {!loc.geo.lon__c} == 0.0 ) {
+  		alt = 3;  // zoom way up if no actual location
+    } 
+    gmap.setCenter( new google.maps.LatLng({!loc.geo.lat__c}, {!loc.geo.lon__c}), alt );
+    
+ }
+
+</script>
+		<p>Existing Location: ({!loc.geo.lat__c}, {!loc.geo.lon__c} )</p>
+			<p><strong>New Location: </strong> <span id="latlon"></span></p>
+			<div id="bd">
+			<div id="gmap"></div>
+			<div id="crosshair"></div>
+			<div id="crosshair2"><img height="32px" width="32px" 
+			src="{! URLFOR($Resource.pushpin)}" /></div>
+			</div>
+	
+		</apex:pageblock>
+	</apex:form>
+</apex:page>

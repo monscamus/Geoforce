@@ -1,0 +1,14 @@
+<apex:page standardController="Geo_Location__c"
+	extensions="GeoPreview,geoApiKey" sidebar="false">
+	<apex:stylesheet value="{!$Resource.earth_css}" />
+
+	<apex:form >
+		<apex:outputPanel id="preview" styleClass="center" layout="block">
+			<a href="/{!Geo_Location__c.id}">Back </a>
+
+			<c:GoogleEarth kml="{!previewKMLString}" look="{!previewLocation}"
+				location="{!location}" />
+
+		</apex:outputPanel>
+	</apex:form>
+</apex:page>

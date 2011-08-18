@@ -1,0 +1,33 @@
+<apex:page standardController="Account" recordSetvar="accounts"
+	extensions="accSetKml,LocationsExt" tabStyle="Geo_Force__tab"
+	sidebar="false">
+	<apex:stylesheet value="{!$Resource.earth_css}" />
+
+	<apex:form >
+		<apex:outputPanel id="preview" styleClass="center" layout="block">
+			<c:geoViewHeader />  
+          
+         &nbsp;&nbsp; 
+         <apex:selectList value="{!filterId}" size="1">
+				<apex:actionSupport event="onchange" action="{!changedFilter}" />
+				<apex:selectOptions value="{!ListViewOptions}" />
+			</apex:selectList>&nbsp;&nbsp;
+         
+         <apex:outputText value="{!filterId}" rendered="false" />
+
+			<apex:commandButton value=" Export KML " disabled="{!exportDisabled}"
+				id="export"
+				oncomplete="window.open('/apex/kmlAccountSetStyleBalloon');" />
+        
+	     {!resultsize} accounts found - {!mappedLocationsCount} mapped
+	     &nbsp;&nbsp;&nbsp;&nbsp;
+	     <apex:outputLink value="/ui/list/FilterEditPage?id={!filterId}&retURL=%2F001&cancelURL=%2F001%2Fo">
+            Edit list view</apex:outputLink>
+
+			<p></p>
+
+			<c:GoogleEarth kml="{!kmlstring}" look="{!firstRecord}"
+				location="{!location}" />
+		</apex:outputPanel>
+	</apex:form>
+</apex:page>
